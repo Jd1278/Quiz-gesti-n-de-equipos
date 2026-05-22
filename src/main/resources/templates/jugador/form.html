@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8"/>
+   <title>Formulario Jugador - JPA Relations</title>
+   <!-- Tailwind CSS CDN -->
+   <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4 antialiased text-slate-800">
+
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-100 p-8">
+        
+     <!-- Título Dinámico -->
+     <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+       <span>🏃</span>
+        <span th:text="${jugador.id == null ? 'Nuevo Jugador' : 'Editar Jugador'}">Nuevo Jugador</span>
+     </h2>
+
+     <!-- Formulario -->
+     <form th:action="@{/jugadores/guardar}" th:object="${jugador}" method="post" class="space-y-5">
+       
+       <!-- ID Oculto -->
+       <input type="hidden" th:field="*{id}"/>
+
+       <!-- Campo: Nombre -->
+       <div>
+         <label class="block text-sm font-semibold text-slate-700 mb-2">Nombre</label>
+         <input type="text" th:field="*{nombre}" required
+                placeholder="Ej. Erling"
+                class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 transition-all focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-50"/>
+       </div>
+
+       <!-- Campo: Apellido -->
+       <div>
+         <label class="block text-sm font-semibold text-slate-700 mb-2">Apellido</label>
+         <input type="text" th:field="*{apellido}"
+                placeholder="Ej. Haaland"
+                class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 transition-all focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-50"/>
+       </div>
+
+       <!-- Campo: Número / Dorsal -->
+       <div>
+         <label class="block text-sm font-semibold text-slate-700 mb-2">Número de Camiseta (Dorsal)</label>
+         <input type="number" th:field="*{numero}" min="1" max="99"
+                placeholder="Ej. 9"
+                class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 transition-all focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-50"/>
+       </div>
+
+       <!-- Campo: Posición (Select Personalizado) -->
+       <div>
+         <label class="block text-sm font-semibold text-slate-700 mb-2">Posición en el campo</label>
+         <div class="relative">
+           <select th:field="*{posicion}"
+                   class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-700 transition-all focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-50 appearance-none cursor-pointer">
+             <option value="">-- Seleccionar posición --</option>
+             <option value="Portero">Portero</option>
+             <option value="Defensa">Defensa</option>
+             <option value="Mediocampista">Mediocampista</option>
+             <option value="Delantero">Delantero</option>
+           </select>
+           <!-- Flecha SVG del Select -->
+           <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+               <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+             </svg>
+           </div>
+         </div>
+       </div>
+
+       <!-- NUEVO CAMPO: Club (Relación JPA) -->
+       <div>
+         <label class="block text-sm font-semibold text-slate-700 mb-2">Club / Equipo</label>
+         <div class="relative">
+           <select th:field="*{club}" required
+                   class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-700 transition-all focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-50 appearance-none cursor-pointer">
+             <option value="">-- Seleccionar Club --</option>
+             <option th:each="c : ${clubes}" 
+                     th:value="${c.id}" 
+                     th:text="${c.nombre}">
+             </option>
+           </select>
+           <!-- Flecha SVG del Select -->
+           <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+               <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+             </svg>
+           </div>
+         </div>
+       </div>
+
+       <!-- Barra de Acciones -->
+       <div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-100 mt-6">
+         <a href="/jugadores"
+            class="px-4 py-2.5 border border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+           Cancelar
+         </a>
+         <button type="submit"
+                 class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-emerald-600 rounded-xl text-sm font-semibold text-white shadow-md shadow-emerald-600/10 hover:bg-emerald-700 transition-colors">
+           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+             <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+           </svg>
+           Guardar Jugador
+         </button>
+       </div>
+     </form>
+    </div>
+ </body>
+ </html>

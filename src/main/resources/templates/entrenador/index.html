@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Entrenadores - JPA Relations</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen antialiased text-slate-800">
+
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    
+    <!-- Cabecera -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900 flex items-center gap-2">
+          <span class="text-3xl">🧑‍💼</span> Entrenadores
+        </h1>
+        <p class="text-sm text-slate-500 mt-1">Gestión del cuerpo técnico y preparadores registrados en el sistema.</p>
+      </div>
+      
+      <!-- Botones de Navegación y Acción -->
+      <div class="flex items-center gap-3">
+        <a href="/" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-600 shadow-sm hover:bg-slate-100 hover:text-slate-900 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          Inicio
+        </a>
+        <a href="/entrenadores/nuevo" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-indigo-600 rounded-xl text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+          </svg>
+          Nuevo Entrenador
+        </a>
+      </div>
+    </div>
+
+    <!-- Contenedor de Tabla Responsiva -->
+    <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-600 uppercase tracking-wider">
+              <th class="px-6 py-4">ID</th>
+              <th class="px-6 py-4">Nombre</th>
+              <th class="px-6 py-4">Apellido</th>
+              <th class="px-6 py-4 text-center">Edad</th>
+              <th class="px-6 py-4">Nacionalidad</th>
+              <th class="px-6 py-4 text-right">Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-sm text-slate-600">
+            <!-- Fila Iterativa de Thymeleaf -->
+            <tr th:each="e : ${entrenadores}" class="hover:bg-slate-50/70 transition-colors">
+              <!-- ID con estilo de código -->
+              <td class="px-6 py-4 font-mono text-xs text-slate-400" th:text="${e.id}">1</td>
+              
+              <!-- Datos principales -->
+              <td class="px-6 py-4 font-semibold text-slate-900" th:text="${e.nombre}">John</td>
+              <td class="px-6 py-4 text-slate-700" th:text="${e.apellido}">Doe</td>
+              
+              <!-- Edad estilizada -->
+              <td class="px-6 py-4 text-center">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200" 
+                      th:text="${e.edad}">45</span> años
+              </td>
+              
+              <!-- Nacionalidad -->
+              <td class="px-6 py-4 text-slate-600 font-medium" th:text="${e.nacionalidad}">Argentina</td>
+              
+              <!-- Acciones -->
+              <td class="px-6 py-4 text-right whitespace-nowrap space-x-1">
+                <a th:href="@{/entrenadores/editar/{id}(id=${e.id})}" 
+                   class="inline-flex items-center px-3 py-1.5 bg-amber-50 border border-amber-200 rounded-lg text-xs font-semibold text-amber-700 hover:bg-amber-100 transition-colors">
+                  Editar
+                </a>
+                <a th:href="@{/entrenadores/eliminar/{id}(id=${e.id})}" 
+                   class="inline-flex items-center px-3 py-1.5 bg-red-50 border border-red-200 rounded-lg text-xs font-semibold text-red-700 hover:bg-red-100 transition-colors"
+                   onclick="return confirm('¿Seguro que deseas eliminar este entrenador?')">
+                  Eliminar
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
