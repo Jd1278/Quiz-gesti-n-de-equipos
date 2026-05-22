@@ -1,0 +1,16 @@
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/QuizClubApplication.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/controller/AsociacionController.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/controller/ClubController.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/controller/CompeticionController.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/controller/EntrenadorController.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/controller/JugadorController.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/entity/Asociacion.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/entity/Club.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/entity/Competicion.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/entity/Entrenador.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/entity/Jugador.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/repository/AsociacionRepository.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/repository/ClubRepository.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/repository/CompeticionRepository.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/repository/EntrenadorRepository.java
+/home/juan/Documents/workspace-spring-tools-for-eclipse-5.1.1.RELEASE/Quiz_club/src/main/java/com/quiz/app/repository/JugadorRepository.java
