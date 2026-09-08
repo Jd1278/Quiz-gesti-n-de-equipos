@@ -1,6 +1,7 @@
 <img width="1500" height="500" alt="baner-sembradata" src="https://github.com/user-attachments/assets/cf591af6-bd2d-4cbc-86ce-649c0911a0ca" />
 
 
+
 # SembraData: Predicción Agroclimática — Santander
 
 > **SembraData** es una plataforma web interactiva de analítica agroclimática predictiva diseñada para mitigar los riesgos climáticos y optimizar la toma de decisiones agrícolas en el **departamento de Santander, Colombia**. Cubre con precisión técnica los **87 municipios del departamento**, enfocándose en cultivos estratégicos (**Cacao, Café y Granadilla**), con observaciones climáticas en tiempo real, perfiles de suelo por profundidad, series históricas verificadas (EVA / MinAgricultura), pronósticos estadísticos reproducibles (Theil-Sen) y un asistente conversacional trazable libre de alucinaciones.
@@ -58,7 +59,7 @@
 <!--Apartado de arquitectura -->
 <H1> Arquitectura del sistema </H1>
 
-<img width="1024" height="559" alt="imagen" src="https://github.com/user-attachments/assets/235f6895-6429-433f-ab52-ae28d5ebff1f" /><div align="center">
+<img width="2816" height="1536" alt="Infraestructura-sembradata" src="https://github.com/user-attachments/assets/b6e69468-24a1-4e68-88d0-e535371f6503" />
 
 
 ## 🎯 Objetivo del Proyecto
