@@ -18,9 +18,9 @@
 
 </div>
 
----
+  <h1 align="center"> Despliegue de la Aplicación </h1> 
 
-## Despliegue de la Aplicación
+
 
 > [!IMPORTANT]
 > La versión de producción se encuentra desplegada y conectada a Supabase. Toda la información geográfica y agroclimática está delimitada a los 87 municipios de Santander.
@@ -40,7 +40,7 @@
   </a>
   <p><i>▶️ Haz clic en la imagen para ver la presentación del proyecto en YouTube (2:27 min)</i></p>
 </div>
-## Características Principales
+<h1> Características principales </h1>
 
 | Icono | Módulo / Característica                     | Descripción Técnica                                                                                                                                                                                                                                                                          |
 | :---: | :------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -129,72 +129,6 @@
 
 ---
 
-## 📁 Estructura del Proyecto
-231-sembradata-abierto-ia-avanzado/
-├── public/                          # Assets estáticos (favicon, imágenes, geoJSON)
-├── src/
-│   ├── components/
-│   │   ├── sembradata/             # 🧩 Componentes core del dashboard
-│   │   │   ├── Dashboard.tsx        # Layout principal con lazy loading
-│   │   │   ├── MapSantander.tsx     # Mapa coroplético SVG interactivo (87 municipios)
-│   │   │   ├── PredictionChart.tsx  # Gráfico histórico vs. predicción Theil-Sen
-│   │   │   ├── WeatherPanel.tsx     # Clima en vivo + pronóstico 7 días (Open-Meteo)
-│   │   │   ├── SoilProfile.tsx      # Perfiles pedológicos (SoilGrids)
-│   │   │   ├── MarketTicker.tsx     # Cotizaciones ICE / DANE SIPSA
-│   │   │   ├── ChatBot.tsx          # Chatbot agroclimático con acordeón de verificación
-│   │   │   └── GeminiAssessment.tsx # Evaluación agronómica cualitativa
-│   │   └── ui/                     # 🎨 Componentes shadcn/ui (Button, Card, Select, etc.)
-│   ├── hooks/                       # 🪝 Custom React Hooks
-│   │   ├── use-agriculture-data.ts  # Fetch de datos EVA, predicciones y requisitos climáticos
-│   │   ├── use-weather-data.ts      # Integración Open-Meteo + NASA POWER + IDEAM
-│   │   ├── use-market-data.ts       # Cotizaciones internacionales y nacionales con SWR
-│   │   ├── use-chat.ts              # Gestión de estado del chatbot y conversaciones
-│   │   └── use-network-status.ts    # Detector de conectividad online/offline
-│   ├── lib/                         # 🔧 Utilidades y configuración
-│   │   ├── utils.ts                 # cn() helper para Tailwind + clsx
-│   │   ├── sentry.ts                # Inicialización de Sentry con DSN condicional
-│   │   ├── error-capture.ts         # Wrapper de captura de errores
-│   │   ├── error-page.ts            # Páginas de error reutilizables
-│   │   └── lovable-error-reporting.ts # Telemetría hacia Lovable.dev
-│   ├── routes/                      # 🗺️ File-based routing (TanStack Start)
-│   │   ├── __root.tsx               # Root layout: QueryClientProvider, Sentry, meta tags SEO
-│   │   ├── index.tsx                # Ruta / — Dashboard principal con Suspense
-│   │   └── routeTree.gen.ts         # Árbol de rutas auto-generado (NO editar manualmente)
-│   ├── styles.css                   # 🎨 Tailwind CSS v4 con directivas @theme y @import
-│   └── types/                       # 📐 Tipos TypeScript globales
-│       └── index.ts                 # Interfaces de cultivos, municipios, predicciones, clima
-├── supabase/
-│   ├── functions/                   # ⚡ Edge Functions (Deno)
-│   │   ├── chat/                    # Chatbot Groq + motor determinista + RAG
-│   │   │   └── index.ts             # Handler POST con validación geográfica y sanitizador
-│   │   └── gemini-assessment/       # Evaluación agronómica con Gemini 2.0 Flash
-│   │       └── index.ts             # Handler POST para análisis cualitativo de consistencia
-│   ├── migrations/                  # 🗃️ Migraciones SQL versionadas
-│   │   ├── 001_create_municipios.sql
-│   │   ├── 002_create_rendimiento_historico.sql
-│   │   ├── 003_create_predicciones_agroclimaticas.sql
-│   │   ├── 004_create_crop_climate_requirements.sql
-│   │   ├── 005_create_chat_conversations.sql
-│   │   ├── 006_create_ideam_cache.sql
-│   │   ├── 007_create_nasa_power_cache.sql
-│   │   ├── 008_create_data_quality_quarantine.sql
-│   │   ├── 009_rls_hardening.sql     # Políticas Row Level Security
-│   │   └── 010_seed_eva_2018_2024.sql # Dataset EVA oficial
-│   └── config.toml                  # Configuración local de Supabase CLI
-├── tests/                           # 🧪 Suite de pruebas
-│   ├── unit/                        # Tests unitarios (Vitest)
-│   ├── components/                  # Tests de componentes (Testing Library)
-│   └── e2e/                         # Tests end-to-end (Playwright)
-├── package.json
-├── vite.config.ts                   # Configuración Vite + TanStack Start + Tailwind
-├── tsconfig.json
-├── eslint.config.js                 # ESLint 9 flat config + typescript-eslint
-├── prettier.config.js
-├── playwright.config.ts
-├── vitest.config.ts
-└── .env.example                     # Variables de entorno requeridas
-
----
 
 ## 🔌 APIs, Modelos y Fuentes de Datos
 
@@ -235,21 +169,3 @@
 
 ---
 
-## 🚀 Guía de Instalación y Despliegue Local
-
-### Requisitos Previos
-
-- **Node.js** ≥ 22.12.0 (recomendado: usar `nvm`)
-- **npm** ≥ 10.x o **pnpm** ≥ 9.x
-- **Git**
-- **Supabase CLI** ≥ 2.0 (para Edge Functions y migraciones locales)
-- Cuenta en [Supabase](https://supabase.com/) (proyecto con PostgreSQL)
-- Cuenta en [Groq](https://groq.com/) (API Key)
-- Cuenta en [Google AI Studio](https://aistudio.google.com/) (API Key Gemini)
-- Cuenta en [Sentry](https://sentry.io/) (DSN opcional)
-
-### 1. Clonación
-
-```bash
-git clone https://github.com/Jd1278/231-sembradata-abierto-ia-avanzado.git
-cd 231-sembradata-abierto-ia-avanzado
