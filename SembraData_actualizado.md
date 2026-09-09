@@ -147,14 +147,15 @@ La plataforma integra:
 
 ### Endpoints Externos Consumidos
 
-| API | Endpoint Base | Datos | Autenticación |
-| :-- | :------------- | :---- | :------------ |
-| **Open-Meteo** | https://api.open-meteo.com/v1/ | Clima actual, pronóstico 7 días y variables agroclimáticas. | Sin clave |
-| **NASA POWER** | https://power.larc.nasa.gov/api/ | Radiación solar, ET₀ y variables históricas. | Sin clave |
-| **IDEAM Socrata** | https://www.datos.gov.co/resource/ | Estaciones meteorológicas oficiales. | Token Socrata opcional |
-| **SoilGrids ISRIC** | https://rest.isric.org/soilgrids/v2.0/ | pH, materia orgánica y textura por profundidad. | Sin clave |
-| **Groq Cloud** | https://api.groq.com/openai/v1/ | LLM `openai/gpt-oss-20b`. | `GROQ_API_KEY` server-side |
-| **Google Generative AI** | https://generativelanguage.googleapis.com/ | Gemini 2.0 Flash. | `GEMINI_API_KEY` server-side |
+| API                      | Página principal                                                                   | Datos                                                       | Autenticación                |
+| :----------------------- | :--------------------------------------------------------------------------------- | :---------------------------------------------------------- | :--------------------------- |
+| **Open-Meteo**           | [https://open-meteo.com/](https://open-meteo.com/)                                 | Clima actual, pronóstico 7 días y variables agroclimáticas. | Sin clave                    |
+| **NASA POWER**           | [https://power.larc.nasa.gov/](https://power.larc.nasa.gov/)                       | Radiación solar, ET₀ y variables históricas.                | Sin clave                    |
+| **IDEAM Socrata**        | [https://www.datos.gov.co/](https://www.datos.gov.co/)                             | Estaciones meteorológicas oficiales.                        | Token Socrata opcional       |
+| **SoilGrids ISRIC**      | [https://www.isric.org/explore/soilgrids](https://www.isric.org/explore/soilgrids) | pH, materia orgánica y textura por profundidad.             | Sin clave                    |
+| **Groq Cloud**           | [https://groq.com/](https://groq.com/)                                             | LLM `openai/gpt-oss-20b`.                                   | `GROQ_API_KEY` server-side   |
+| **Google Generative AI** | [https://ai.google.dev/](https://ai.google.dev/)                                   | Gemini 2.0 Flash.                                           | `GEMINI_API_KEY` server-side |
+
 
 ### Edge Functions
 
