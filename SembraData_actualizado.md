@@ -1,3 +1,4 @@
+<img width="1500" height="500" alt="baner-sembradata" src="https://github.com/user-attachments/assets/43bb04ad-fbc3-425a-ae59-336a69692401" />
 <div align="center">
 
 # SembraData: Predicción Agroclimática — Santander
@@ -22,7 +23,7 @@
 ## Despliegue de la Aplicación
 
 > [!IMPORTANT]
-> La versión de producción se encuentra desplegada y conectada a Supabase. La cobertura geográfica y agroclimática está delimitada a los **87 municipios de Santander**.
+> La versión beta en producción se encuentra desplegada y conectada a Supabase. La cobertura geográfica y agroclimática está delimitada a los **87 municipios de Santander**, está versión contiene un análisis sobre los cultivos de café, cacao y granadilla.
 
 <div align="center">
 
@@ -31,14 +32,6 @@
 **`https://231-sembradata-abierto-ia-avanzado.vercel.app/`**
 
 ### [Sustentación y Documentación Ejecutiva](https://gamma.app/docs/Prediccion-Agroclimatica-Inteligente-vr0vp5qbfomjv4y)
-
-<!-- VIDEO DE PRESENTACIÓN SEMBRADATA -->
-<div align="center">
-  <a href="https://www.youtube.com/watch?v=2j3pJan0OJU" target="_blank">
-    <img src="https://img.youtube.com/vi/2j3pJan0OJU/maxresdefault.jpg?v=3" alt="Presentación SembraData" width="100%" style="border-radius: 8px;">
-  </a>
-  <p><i>▶️ Haz clic en la imagen para ver la presentación del proyecto en YouTube (2:27 min)</i></p>
-</div>
 
 </div>
 
@@ -64,69 +57,8 @@
 
 ## Arquitectura del Sistema
 
-![Infraestructura SembraData](https://github.com/user-attachments/assets/b6e69468-24a1-4e68-88d0-e535371f6503)
+<img width="2816" height="1536" alt="Infraestructura-sembradata" src="https://github.com/user-attachments/assets/ed868e85-a8ac-4c71-bef1-e5748952ecf0" />
 
-```mermaid
-flowchart TD
-    subgraph Frontend["Frontend — React 19 + TanStack Start"]
-        UI["Interfaz / Dashboard"]
-        Router["TanStack Router"]
-        Query["TanStack React Query"]
-        Net["Detector de conectividad"]
-    end
-
-    subgraph Services["Servicios de aplicación"]
-        Climate["Servicios climáticos"]
-        Soil["Servicio de suelo"]
-        Forecast["Motor de predicción"]
-        Crop["Recomendación de cultivos"]
-        History["Histórico vs. Predicción"]
-        Market["Servicios de mercado"]
-    end
-
-    subgraph Edge["Supabase Edge Functions — Deno"]
-        Chat["chat"]
-        Gemini["gemini-assessment"]
-        Cache["cache-cleanup"]
-    end
-
-    subgraph DB["Supabase PostgreSQL"]
-        Municipalities["municipios"]
-        Historical["rendimiento_historico"]
-        Predictions["predicciones_agroclimaticas"]
-        Requirements["crop_climate_requirements"]
-        Conversations["chat_conversations"]
-        Quality["data_quality_quarantine"]
-        CacheDB["cachés de APIs"]
-    end
-
-    subgraph APIs["Fuentes externas"]
-        OpenMeteo["Open-Meteo"]
-        NASA["NASA POWER"]
-        IDEAM["IDEAM / Socrata"]
-        SoilGrids["SoilGrids"]
-        Groq["Groq Cloud"]
-        GeminiAPI["Google Generative AI"]
-        MarketAPI["Fuentes de mercado"]
-    end
-
-    UI --> Router --> Query
-    Query --> Net
-    Query --> Services
-
-    Services --> DB
-    Services --> OpenMeteo
-    Services --> NASA
-    Services --> IDEAM
-    Services --> SoilGrids
-    Services --> MarketAPI
-
-    Query --> Edge
-    Chat --> Groq
-    Gemini --> GeminiAPI
-    Edge --> DB
-    Cache --> DB
-```
 
 ---
 
@@ -217,12 +149,12 @@ La plataforma integra:
 
 | API | Endpoint Base | Datos | Autenticación |
 | :-- | :------------- | :---- | :------------ |
-| **Open-Meteo** | `https://api.open-meteo.com/v1/` | Clima actual, pronóstico 7 días y variables agroclimáticas. | Sin clave |
-| **NASA POWER** | `https://power.larc.nasa.gov/api/` | Radiación solar, ET₀ y variables históricas. | Sin clave |
-| **IDEAM Socrata** | `https://www.datos.gov.co/resource/` | Estaciones meteorológicas oficiales. | Token Socrata opcional |
-| **SoilGrids ISRIC** | `https://rest.isric.org/soilgrids/v2.0/` | pH, materia orgánica y textura por profundidad. | Sin clave |
-| **Groq Cloud** | `https://api.groq.com/openai/v1/` | LLM `openai/gpt-oss-20b`. | `GROQ_API_KEY` server-side |
-| **Google Generative AI** | `https://generativelanguage.googleapis.com/` | Gemini 2.0 Flash. | `GEMINI_API_KEY` server-side |
+| **Open-Meteo** | https://api.open-meteo.com/v1/ | Clima actual, pronóstico 7 días y variables agroclimáticas. | Sin clave |
+| **NASA POWER** | https://power.larc.nasa.gov/api/ | Radiación solar, ET₀ y variables históricas. | Sin clave |
+| **IDEAM Socrata** | https://www.datos.gov.co/resource/ | Estaciones meteorológicas oficiales. | Token Socrata opcional |
+| **SoilGrids ISRIC** | https://rest.isric.org/soilgrids/v2.0/ | pH, materia orgánica y textura por profundidad. | Sin clave |
+| **Groq Cloud** | https://api.groq.com/openai/v1/ | LLM `openai/gpt-oss-20b`. | `GROQ_API_KEY` server-side |
+| **Google Generative AI** | https://generativelanguage.googleapis.com/ | Gemini 2.0 Flash. | `GEMINI_API_KEY` server-side |
 
 ### Edge Functions
 
@@ -245,16 +177,18 @@ La plataforma integra:
 > **Restricción de calidad:** El motor no debe generar una predicción estadística cuando no existen al menos **3 observaciones reales** disponibles para el contexto analizado. No se utilizan datos sintéticos para completar series insuficientes.
 
 ### Datasets Principales
+## Datasets Principales
 
-| Fuente | Periodo / Cobertura | Uso |
-| :----- | :------------------ | :-- |
-| **EVA — MinAgricultura** | 2018–2024 / 87 municipios | Series históricas de rendimiento y producción. |
-| **NASA POWER** | 1984–presente | Variables agroclimáticas históricas y satelitales. |
-| **IDEAM** | Por estación | Observaciones meteorológicas oficiales. |
-| **Open-Meteo** | Actual / pronóstico | Variables climáticas operativas. |
-| **SoilGrids ISRIC** | Datos estáticos por profundidad | Caracterización del suelo. |
-| **Mercado nacional e internacional** | Según disponibilidad del proveedor | Referencias de cacao, café y otros indicadores de mercado. |
-| **GeoJSON Santander** | 87 municipios | Representación geográfica y validación espacial. |
+| Fuente                               | Periodo / Cobertura                | Uso                                                        | Enlace oficial                                                                                                                        |
+| :----------------------------------- | :--------------------------------- | :--------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| **EVA — MinAgricultura**             | 2018–2024 / 87 municipios          | Series históricas de rendimiento y producción.             | [Evaluaciones Agropecuarias Municipales — Agronet](https://www.agronet.gov.co/estadistica/Paginas/home.aspx?cod=59)                   |
+| **NASA POWER**                       | 1984–presente                      | Variables agroclimáticas históricas y satelitales.         | [NASA POWER](https://power.larc.nasa.gov/)                                                                                            |
+| **IDEAM**                            | Por estación                       | Observaciones meteorológicas oficiales.                    | [IDEAM](http://www.ideam.gov.co/) / [Datos Abiertos Colombia](https://www.datos.gov.co/)                                              |
+| **Open-Meteo**                       | Actual / pronóstico                | Variables climáticas operativas.                           | [Open-Meteo](https://open-meteo.com/)                                                                                                 |
+| **SoilGrids ISRIC**                  | Datos estáticos por profundidad    | Caracterización del suelo.                                 | [SoilGrids — ISRIC](https://soilgrids.org/)                                                                                           |
+| **Mercado nacional e internacional** | Según disponibilidad del proveedor | Referencias de cacao, café y otros indicadores de mercado. | [DANE — SIPSA](https://www.dane.gov.co/index.php/servicios-al-ciudadano/servicios-de-informacion/sipsa) / [ICE](https://www.ice.com/) |
+| **GeoJSON Santander**                | 87 municipios                      | Representación geográfica y validación espacial.           | [IGAC](https://www.igac.gov.co/) / [Geoportal DANE](https://geoportal.dane.gov.co/)                                                   |
+
 
 ---
 
@@ -639,27 +573,6 @@ Otros documentos relevantes del repositorio:
 - `reports/informe_optimizacion.md` — informe técnico.
 - `reports/reporte_final.pdf` — reporte final.
 - `data/README.md` — documentación del directorio de datos.
-
----
-
-## Estado del Repositorio
-
-La rama analizada es:
-
-```text
-version
-```
-
-El repositorio contiene actualmente **43 commits** y mantiene una estructura orientada a producción con:
-
-- Frontend React + TanStack Start.
-- Servicios especializados para clima, suelo, mercado y predicción.
-- Supabase PostgreSQL con RLS y migraciones versionadas.
-- Edge Functions para IA.
-- ETL y metadatos de datos.
-- Pruebas unitarias, de integración, componentes y E2E.
-- Documentación técnica y reportes.
-- Docker y Vercel para despliegue.
 
 ---
 
